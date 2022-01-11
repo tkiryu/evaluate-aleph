@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from 'urql';
+import { Badge, Flex, Heading, HStack, Link, Text, VStack } from 'chakra-ui';
 
 const LaunchesPastQuery = `
 {
@@ -22,34 +23,34 @@ export function SpaceX() {
   const [result] = useQuery({
     query: LaunchesPastQuery,
   });
-  const { data, error } = result;
-
-  if (error) return <p>{JSON.stringify(error, null, 2)}</p>;
-
   return (
-    <>
-      {data?.launchesPast?.map(({ mission_name, launch_date_local, links, rocket, details }) => {
+    <VStack spacing={4} align="stretch" p={4}>
+      {result.data?.launchesPast?.map(({ mission_name, launch_date_local, links, rocket, details }) => {
         return (
-          <article key={mission_name}>
-            <h2>Mission: {mission_name}</h2>
-            <section>
-              <p>
-                {new Date(launch_date_local).toLocaleDateString()} | <strong>{rocket?.rocket_name}</strong>
-              </p>
-              <p>{details}</p>
-              <div>
-                <a href={links.video_link} target="_blank">
+          <Flex as="article" direction="column" gap={2} p="4" borderWidth="1px" borderRadius="lg" key={mission_name}>
+            <Heading as="h2" size="lg">
+              {mission_name}
+            </Heading>
+            <Flex direction="column" gap={2}>
+              <HStack spacing={2}>
+                <Text fontSize="sm">{new Date(launch_date_local).toLocaleDateString()}</Text>
+                <Badge colorScheme="blue" borderRadius="full">
+                  {rocket?.rocket_name}
+                </Badge>
+              </HStack>
+              <Text>{details}</Text>
+              <HStack spacing={2}>
+                <Link href={links.video_link} isExternal color="blue">
                   video
-                </a>{' '}
-                <a href={links.article_link} target="_blank">
+                </Link>
+                <Link href={links.article_link} isExternal color="blue">
                   article
-                </a>
-              </div>
-            </section>
-            <hr />
-          </article>
+                </Link>
+              </HStack>
+            </Flex>
+          </Flex>
         );
       })}
-    </>
+    </VStack>
   );
 }
