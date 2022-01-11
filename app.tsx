@@ -1,4 +1,3 @@
-// @deno-types="https://esm.sh/v58/@types/react/jsx-runtime.d.ts"
 import React, { FC } from 'react';
 import { createClient, Provider } from 'urql';
 import { ChakraProvider } from 'chakra-ui';
