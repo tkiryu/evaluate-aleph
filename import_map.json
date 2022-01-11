@@ -7,7 +7,11 @@
     "aleph/react": "https://deno.land/x/aleph@v0.3.0-beta.19/framework/react/mod.ts",
     "react": "https://esm.sh/react@17.0.2",
     "react-dom": "https://esm.sh/react-dom@17.0.2",
-    "urql": "https://esm.sh/urql"
+    "urql": "https://esm.sh/urql",
+    "chakra-ui": "https://esm.sh/@chakra-ui/react",
+    "emotion/react": "https://esm.sh/@emotion/react",
+    "emotion/styled": "https://esm.sh/@emotion/styled",
+    "framer-motion": "https://esm.sh/framer-motion"
   },
   "scopes": {}
 }
